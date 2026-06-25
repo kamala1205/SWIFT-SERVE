@@ -12,6 +12,9 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
+# Video source mode
+VIDEO_SOURCE_MODE = os.environ.get("VIDEO_SOURCE_MODE", "local").lower()
+
 def get_conn():
     return psycopg2.connect(DATABASE_URL)
 
