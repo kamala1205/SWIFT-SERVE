@@ -10,18 +10,10 @@ import psycopg2, psycopg2.extras
 # Flask-SocketIO for real-time
 from flask_socketio import SocketIO, emit, join_room, leave_room
 
-# ====== DB CONFIG (PGAdmin) ======
-DB_HOST = os.environ.get('DB_HOST', 'localhost')
-DB_NAME = os.environ.get('DB_NAME', 'swiftserve_db')
-DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASS = os.environ.get('DB_PASS', 'Bapun@123')
-DB_PORT = os.environ.get('DB_PORT', '5432')
-
-# Video source mode: 'online' or 'local'
-VIDEO_SOURCE_MODE = os.environ.get('VIDEO_SOURCE_MODE', 'local').lower()
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 def get_conn():
-    return psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASS, port=DB_PORT)
+    return psycopg2.connect(DATABASE_URL)
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'swiftserve_secret')
